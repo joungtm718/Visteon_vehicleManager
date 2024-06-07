@@ -1,0 +1,213 @@
+<!--<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vehicle management page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .car-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+            .car-list .detail {
+                margin-top: 5px;
+            }
+
+            .car-list li {
+                margin-bottom: 20px;
+                padding: 10px;
+                background-color: #f9f9f9;
+                border-radius: 4px;
+            }
+
+                .car-list li:last-child {
+                    margin-bottom: 0;
+                }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vehicle management</h1>
+        <ul class="car-list" id="carList">
+        </ul>
+        <form id="addCarForm">
+            <input type="text" id="carName" placeholder="vehicle name" required>
+            <input type="text" id="carModel" placeholder="vehicle model" required>
+            <button type="submit">Add vehicle </button>
+        </form>
+    </div>
+
+    <script>
+        const carList = document.getElementById('carList');
+        const addCarForm = document.getElementById('addCarForm');
+
+        addCarForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const carNameInput = document.getElementById('carName');
+            const carModelInput = document.getElementById('carModel');
+
+            const carName = carNameInput.value;
+            const carModel = carModelInput.value;
+
+            if (carName.trim() && carModel.trim()) {
+                const newCarItem = document.createElement('li');
+                newCarItem.textContent = `${carName} - ${carModel}`;
+                carList.appendChild(newCarItem);
+
+                carNameInput.value = '';
+                carModelInput.value = '';
+            } else {
+                alert('insert vehicle name and vehicle model.');
+            }
+        });
+    </script>
+</body>
+
+
+<body>
+    <h1>vehicle List</h1>
+
+    {% for Vehicle in VehicleModel%}
+    <div class="container ">
+        <div class="car-list">
+            <div class="detail"><strong>{{Vehicle.carModel}}</strong></div>
+            <div class="detail"> Mileage : {{Vehicle.mileage}} </div>
+            <div class="detail"> Location : {{Vehicle.location}} </div>
+            <div class="detail"> LastUser : {{Vehicle.NowUser}} </div>
+            <form class="edit-form">
+                <div class="detail">
+                    <label>Mileage : <input type="text" name="mileage" value="{{ vehicle.mileage }}"></label>
+                </div>
+                <div class="detail">
+                    <label>Location : <input type="text" name="location" value="{{ vehicle.location }}"></label>
+                </div>
+                <div class="detail">
+                    <label>Last User : <input type="text" name="nowUser" value="{{ vehicle.nowUser }}"></label>
+                </div>
+                <button type="button" class="save-button">Save</button>
+            </form>
+        </div>
+    </div>
+    {%endfor%}
+
+    <h1>Person List</h1>
+
+    {% for member in memberName%}
+    <div class="container">
+        <div class="car-list li">
+            {{member.vekMember}}
+        </div>
+    </div>
+    {%endfor%}
+
+</body>
+</html>
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visteon Vehicle List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 40px;
+        }
+
+        .vehicle-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+            .vehicle-item:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+
+            .vehicle-item .detail {
+                margin-top: 10px;
+                font-size: 16px;
+                color: #555;
+            }
+
+            .vehicle-item .car-model {
+                font-weight: bold;
+                font-size: 18px;
+                color: #333;
+                text-decoration: none;
+            }
+
+                .vehicle-item .car-model:hover {
+                    color: #007BFF;
+                }
+
+        .edit-form {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .vehicle-item {
+                padding: 15px;
+                margin: 10px;
+            }
+
+                .vehicle-item .detail {
+                    font-size: 14px;
+                }
+
+                .vehicle-item .car-model {
+                    font-size: 16px;
+                }
+        }
+    </style>
+</head>
+<body>
+    <h1>Vehicle List</h1>
+        {% for vehicle in VehicleModel %}
+        <div class="vehicle-item" data-id="{{ vehicle.id }}">
+            <a href="{{ vehicle.carModel }}/">
+                <div class="detail car-model">{{ vehicle.carModel }}</div>
+            </a>
+            <div class="detail">Mileage: {{ vehicle.mileage }}</div>
+            <div class="detail">Location: {{ vehicle.location }}</div>
+            <div class="detail">Last User: {{ vehicle.NowUser }}</div>
+        </div>
+        {% endfor %}
+</body>
+</html>

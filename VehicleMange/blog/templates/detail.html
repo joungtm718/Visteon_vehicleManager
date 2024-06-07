@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle and Person List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .vehicle-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .vehicle-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            width: 100%;
+        }
+
+            .vehicle-item:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            }
+
+        .detail {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .car-model {
+            font-weight: bold;
+            font-size: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        {{VehicleModel.carModel}} detail information
+    </h1>
+    <div class="vehicle-item">
+        <div class="detail">Mileage: {{ VehicleModel.mileage }}</div>
+        <div class="detail">Location: {{ VehicleModel.location }}</div>
+        <div class="detail">Last User: {{ VehicleModel.NowUser }}</div>
+    </div>
+</body>
+</html>
